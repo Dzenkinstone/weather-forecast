@@ -6,12 +6,11 @@ import {
 } from "../../redux/weather/selectors";
 import { useSelector } from "react-redux";
 import getImage from "../../utils/getImage";
-import { useState } from "react";
 import { Pagination } from "../Pagination";
 
 const DailyCard = () => {
-  const list = useSelector(selectList);
   const page = useSelector(selectPage);
+  const list = useSelector(selectList);
   const weatherForecast = [...list].splice(1, list.length - 1);
   const postsPerPage = 3;
   const lastIndex = page * postsPerPage;

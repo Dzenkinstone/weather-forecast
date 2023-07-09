@@ -1,37 +1,27 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getWeather } from "../../redux/weather/operations";
-import { List, Search } from "./Weather.styled";
-
-import { WeatherCard } from "../WeatherCard";
+import { useDispatch, useSelector } from "react-redux";
+import { searchWeather } from "../../redux/weather/operations";
+import { selectCityList } from "../../redux/weather/selectors";
 
 const Weather = () => {
   const dispatch = useDispatch();
+  const list = useSelector(selectCityList);
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-  }, []);
+  const onClick = (event) => {
+    event.preventDefault();
 
-  const successCallback = (position) => {
-    const currentPosition = {
-      lat: position.coords.latitude,
-      lon: position.coords.longitude,
-    };
-
-    dispatch(getWeather(currentPosition));
-  };
-
-  const errorCallback = (error) => {
-    console.log(error);
+    return dispatch(searchWeather(event.currentTarget.search.value));
   };
 
   return (
-    <div>
-      <Search type="search"></Search>
-      <List>
-        <WeatherCard />
-      </List>
-    </div>
+    <>
+      <div>
+        <form onSubmit={onClick}>
+          <input name="search"></input>
+          <button type="submit">Click!</button>
+        </form>
+      </div>
+      <ul>{}</ul>
+    </>
   );
 };
 

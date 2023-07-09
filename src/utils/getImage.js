@@ -8,7 +8,7 @@ import clear from "../images/clear.png";
 import snow from "../images/snow.png";
 
 const getImage = (weather) => {
-  const specificPath = weather[0].main;
+  const specificPath = weather && weather[0].main;
   let weatherIcon = "";
   if (specificPath === "Clouds") {
     weatherIcon = clouds;

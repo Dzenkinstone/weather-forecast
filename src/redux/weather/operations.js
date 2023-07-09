@@ -17,3 +17,18 @@ export const getWeather = createAsyncThunk(
     }
   }
 );
+
+export const searchWeather = createAsyncThunk(
+  "weather/searchWeather",
+  async (value, thunkAPI) => {
+    console.log(value);
+    try {
+      const response = await axios.get(
+        `http://api.openweathermap.org/data/2.5/forecast?q=${value}&appid=${API_KEY}`
+      );
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);

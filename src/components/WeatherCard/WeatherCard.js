@@ -7,25 +7,25 @@ import { useSelector } from "react-redux";
 import { selectList, selectCity } from "../../redux/weather/selectors";
 
 const WeatherCard = () => {
-  const list = useSelector(selectList);
   const city = useSelector(selectCity);
+  const list = useSelector(selectList);
   const currentWeather = [...list].splice(1, 1);
-
   return (
     <>
-      {currentWeather.map(({ dt, weather, main, wind }) => {
-        const weatherIcon = getImage(weather);
+      {currentWeather &&
+        currentWeather.map(({ dt, weather, main, wind }) => {
+          const weatherIcon = getImage(weather);
 
-        return (
-          <Card key={dt}>
-            <img src={weatherIcon} width={100} />
-            <Temperature>{main.temp.toFixed()}°C</Temperature>
-            <City>{city.name}</City>
-            <Description main={main} wind={wind} />
-            <DailyCard />
-          </Card>
-        );
-      })}
+          return (
+            <Card key={dt}>
+              <img src={weatherIcon} width={100} />
+              <Temperature>{main?.temp.toFixed()}°C</Temperature>
+              <City>{city?.name}</City>
+              <Description main={main} wind={wind} />
+              <DailyCard />
+            </Card>
+          );
+        })}
     </>
   );
 };

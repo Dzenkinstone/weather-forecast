@@ -1,7 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getWeather } from "./operations";
 
-const initialState = { list: [], city: null, isLoading: false, error: null };
+const initialState = {
+  list: [],
+  city: "",
+  isLoading: false,
+  error: null,
+};
 
 export const weatherSlice = createSlice({
   name: "weather",
@@ -14,7 +19,7 @@ export const weatherSlice = createSlice({
       state.isLoading = false;
       state.error = null;
       state.list = action.payload.list;
-      state.city = action.payload.city.name;
+      state.city = action.payload.city;
     },
     [getWeather.rejected](state, action) {
       state.isLoading = false;

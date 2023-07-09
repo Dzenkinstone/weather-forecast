@@ -1,25 +1,12 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { getWeather } from "../../redux/weather/operations";
-import { selectForecast, selectPlace } from "../../redux/weather/selectors";
-import {
-  Card,
-  City,
-  Content,
-  Description,
-  Image,
-  List,
-  Temperature,
-  Text,
-  TextWrapper,
-} from "./Weather.styled";
+import { List, Search } from "./Weather.styled";
 
 import { WeatherCard } from "../WeatherCard";
 
 const Weather = () => {
   const dispatch = useDispatch();
-  const list = useSelector(selectForecast);
-  const city = useSelector(selectPlace);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
@@ -40,9 +27,9 @@ const Weather = () => {
 
   return (
     <div>
-      <input type="search"></input>
+      <Search type="search"></Search>
       <List>
-        <WeatherCard list={list} city={city} />
+        <WeatherCard />
       </List>
     </div>
   );

@@ -11,15 +11,19 @@ import persistReducer from "redux-persist/es/persistReducer";
 import persistStore from "redux-persist/es/persistStore";
 import storage from "redux-persist/lib/storage";
 import { weatherReducer } from "./weather/weatherSlice";
+import { pageReducer } from "./weather/pageSlice";
 
 const persistConfig = {
   key: "weather",
   storage,
-  whitelist: ["token"],
+  whitelist: ["weather-forecast"],
 };
 
 export const store = configureStore({
-  reducer: { weather: persistReducer(persistConfig, weatherReducer) },
+  reducer: {
+    weather: persistReducer(persistConfig, weatherReducer),
+    page: pageReducer,
+  },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({
       serializableCheck: {

@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Card = styled.li`
+  width: 500px;
   padding: 40px 35px;
   display: flex;
   flex-direction: column;
@@ -16,27 +17,3 @@ export const Card = styled.li`
 export const Temperature = styled.h2``;
 
 export const City = styled.h3``;
-
-export const Description = styled.ul`
-  margin-top: 20px;
-  gap: 40px;
-  display: flex;
-`;
-
-export const Content = styled.li`
-  display: flex;
-  gap: 10px;
-`;
-
-export const Image = styled.img`
-  margin-top: 10px;
-`;
-
-export const TextWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  gap: 10px;
-`;
-
-export const Text = styled.p``;

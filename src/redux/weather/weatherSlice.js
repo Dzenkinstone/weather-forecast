@@ -4,7 +4,6 @@ import { getWeather, searchWeather } from "./operations";
 const initialState = {
   list: [],
   cityForecast: [],
-  city: "",
   isLoading: false,
   error: null,
 };
@@ -19,8 +18,7 @@ export const weatherSlice = createSlice({
     [getWeather.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-      state.list = action.payload.list;
-      state.city = action.payload.city;
+      state.list = action.payload;
     },
     [getWeather.rejected](state, action) {
       state.isLoading = false;
@@ -32,7 +30,7 @@ export const weatherSlice = createSlice({
     [searchWeather.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-      state.cityForecast.push(action.payload.list);
+      state.cityForecast.push(action.payload);
     },
     [searchWeather.rejected](state, action) {
       state.isLoading = false;

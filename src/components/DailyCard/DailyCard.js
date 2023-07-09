@@ -1,16 +1,11 @@
 import { Card, List } from "./DailyCard.styled";
-import {
-  selectList,
-  selectCity,
-  selectPage,
-} from "../../redux/weather/selectors";
-import { useSelector } from "react-redux";
+
 import getImage from "../../utils/getImage";
 import { Pagination } from "../Pagination";
+import { useState } from "react";
 
-const DailyCard = () => {
-  const page = useSelector(selectPage);
-  const list = useSelector(selectList);
+const DailyCard = ({ list }) => {
+  const [page, setPage] = useState(1);
   const weatherForecast = [...list].splice(1, list.length - 1);
   const postsPerPage = 3;
   const lastIndex = page * postsPerPage;
@@ -31,7 +26,12 @@ const DailyCard = () => {
           );
         })}
       </List>
-      <Pagination totalPosts={weatherForecast.length} posts={postsPerPage} />
+      <Pagination
+        totalPosts={weatherForecast.length}
+        posts={postsPerPage}
+        setPage={setPage}
+        page={page}
+      />
     </>
   );
 };

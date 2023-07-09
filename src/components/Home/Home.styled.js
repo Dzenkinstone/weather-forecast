@@ -1,11 +1,9 @@
 import styled from "@emotion/styled";
 
-export const List = styled.ul`
+export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 15px;
 `;
-
-export const Search = styled.input``;

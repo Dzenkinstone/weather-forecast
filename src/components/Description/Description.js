@@ -16,7 +16,7 @@ const Description = ({ main, wind }) => {
         <Image src={humidity} width={30} height={30} />
         <TextWrapper>
           <Text>{main.humidity}%</Text>
-          <Text>Влажність</Text>
+          <Text>Вологість</Text>
         </TextWrapper>
       </Content>
       <Content>

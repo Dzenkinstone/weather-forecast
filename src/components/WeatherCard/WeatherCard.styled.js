@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const Card = styled.li`
+export const Card = styled.div`
   width: 500px;
   padding: 40px 35px;
   display: flex;

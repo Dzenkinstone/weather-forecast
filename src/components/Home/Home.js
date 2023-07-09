@@ -1,13 +1,15 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getWeather } from "../../redux/weather/operations";
-import { List, Search } from "./Home.styled";
+import { Container, Search } from "./Home.styled";
 
 import { WeatherCard } from "../WeatherCard";
 import { selectList } from "../../redux/weather/selectors";
 
 const Home = () => {
   const dispatch = useDispatch();
+  const list = useSelector(selectList);
+  const currentWeather = [...list].splice(1, 1);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
@@ -27,11 +29,10 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <List>
-        <WeatherCard />;
-      </List>
-    </div>
+    <Container>
+      <h1>Your weather forecast</h1>
+      <WeatherCard list={list} currentWeather={currentWeather} />;
+    </Container>
   );
 };
 

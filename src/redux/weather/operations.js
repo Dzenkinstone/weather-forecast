@@ -8,10 +8,22 @@ export const getWeather = createAsyncThunk(
   async (value, thunkAPI) => {
     try {
       const { lat, lon } = value;
-      const response = await axios.get(
+      const responce = await axios.get(
         `https://api.openweathermap.org/data/2.5/forecast?appid=${API_KEY}&lat=${lat}&lon=${lon}&units=metric`
       );
-      return response.data;
+      const data = responce.data.list.map(
+        ({ dt, dt_txt, weather, main, wind }) => {
+          return {
+            dt,
+            dt_txt,
+            weather,
+            main,
+            wind,
+            name: responce.data.city.name,
+          };
+        }
+      );
+      return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -21,12 +33,24 @@ export const getWeather = createAsyncThunk(
 export const searchWeather = createAsyncThunk(
   "weather/searchWeather",
   async (value, thunkAPI) => {
-    console.log(value);
     try {
-      const response = await axios.get(
-        `http://api.openweathermap.org/data/2.5/forecast?q=${value}&appid=${API_KEY}`
+      const responce = await axios.get(
+        `http://api.openweathermap.org/data/2.5/forecast?q=${value}&appid=${API_KEY}&units=metric`
       );
-      return response.data;
+      const data = responce.data.list.map(
+        ({ dt, dt_txt, weather, main, wind }) => {
+          return {
+            dt,
+            dt_txt,
+            weather,
+            main,
+            wind,
+            name: responce.data.city.name,
+          };
+        }
+      );
+
+      return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

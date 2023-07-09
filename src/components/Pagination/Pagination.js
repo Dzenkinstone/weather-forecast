@@ -1,12 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
 import { Button } from "./Pagination.styled";
-import { selectPage } from "../../redux/weather/selectors";
-import { setPage } from "../../redux/weather/pageSlice";
 
-const Pagination = ({ totalPosts, posts }) => {
-  const dispatch = useDispatch();
-  const page = useSelector(selectPage);
-
+const Pagination = ({ totalPosts, posts, setPage, page }) => {
   let pages = [];
 
   for (let i = 1; i <= Math.ceil(totalPosts / posts); i += 1) {
@@ -20,7 +14,7 @@ const Pagination = ({ totalPosts, posts }) => {
           <Button
             currentPage={currentPage}
             page={page}
-            onClick={() => dispatch(setPage(currentPage))}
+            onClick={() => setPage(currentPage)}
             key={index}
           >
             {currentPage}

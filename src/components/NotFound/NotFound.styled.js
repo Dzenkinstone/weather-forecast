@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 
 export const Section = styled.section`
   background: #fff;
+  padding: 50px 0px;
   font-family: "Arvo", serif;
 `;
 
@@ -36,18 +37,23 @@ export const Content = styled.div`
   gap: 30px;
 `;
 
-export const GoToHome = styled.div`
+export const GoToHome = styled.button`
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 15px;
   color: white;
   margin: 0 auto;
-  padding: 10px 20px;
   background: #39ac31;
 `;
 
 export const Link = styled(NavLink)`
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   font-size: 22px;
   color: #fff;
 `;

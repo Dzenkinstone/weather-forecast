@@ -19,8 +19,10 @@ const NotFound = () => {
         <Title class="h2">Сторінку не знайдено</Title>
 
         <GoToHome>
-          <BsArrowLeft />
-          <Link to={"/"}>На головну</Link>
+          <Link to={"/"}>
+            <BsArrowLeft />
+            <p>На головну</p>
+          </Link>
         </GoToHome>
       </Content>
     </Section>

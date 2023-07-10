@@ -4,7 +4,6 @@ import {
   Item,
   Link,
   HomeLink,
-  Wrapper,
   Logo,
   Text,
 } from "./Navigation.styled";
@@ -22,10 +21,10 @@ const NavigationBar = () => {
         </Item>
         <Item>
           <HomeLink to="/" end>
-            Home
+            Головна
           </HomeLink>
           <Link to="/weather-forecast" end>
-            Weather
+            Погода
           </Link>
         </Item>
       </List>

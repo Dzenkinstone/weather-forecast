@@ -19,7 +19,12 @@ const DailyCard = ({ list }) => {
           const weatherIcon = getImage(weather);
           return (
             <Card key={dt}>
-              <img src={weatherIcon} width={30} height={30} />
+              <img
+                alt="weather-icon"
+                src={weatherIcon}
+                width={30}
+                height={30}
+              />
               <p style={{ textAlign: "center" }}>{main.temp.toFixed()}°C</p>
               <p>{dt_txt}</p>
             </Card>

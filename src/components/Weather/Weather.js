@@ -6,6 +6,7 @@ import { Content, List } from "./Weather.styled";
 import { Search } from "../Search";
 import { nanoid } from "nanoid";
 import { Toaster, toast } from "react-hot-toast";
+const translit = require("ua-en-translit");
 
 const Weather = () => {
   const dispatch = useDispatch();
@@ -14,8 +15,10 @@ const Weather = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
+    const city = translit(
+      event.currentTarget.search.value.trim().toLowerCase()
+    );
 
-    const city = event.currentTarget.search.value.trim().toLowerCase();
     const condition = cities.some((item) => item.toLowerCase() === city);
 
     if (condition) {
@@ -38,7 +41,6 @@ const Weather = () => {
       <List>
         {list.map((item, idx) => {
           const id = nanoid();
-
           const currentWeather = [...item].splice(1, 1);
           return (
             <WeatherCard

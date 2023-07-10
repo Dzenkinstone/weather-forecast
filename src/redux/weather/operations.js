@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const API_KEY = "20a1790bb70256b9cc082b6d5160a3ae";
 
@@ -40,6 +41,14 @@ export const searchWeather = createAsyncThunk(
 
       return responce.data;
     } catch (e) {
+      toast("Такого міста не знайдено", {
+        duration: 2000,
+        style: {
+          backgroundColor: "red",
+          color: "white",
+          fontSize: "20px",
+        },
+      });
       return thunkAPI.rejectWithValue(e.message);
     }
   }

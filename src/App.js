@@ -1,7 +1,6 @@
 import "./App.css";
 
-import { lazy, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { lazy } from "react";
 
 import { Route, Routes } from "react-router-dom";
 import { SharedLayout } from "./components/SharedLayout";
@@ -11,8 +10,6 @@ const WeatherPage = lazy(() => import("./pages/WeatherPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 export const App = () => {
-  const dispatch = useDispatch();
-
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>

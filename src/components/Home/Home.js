@@ -36,7 +36,7 @@ const Home = () => {
 
   return (
     <Container>
-      <h1>Your weather forecast</h1>
+      <h1>Ваш прогноз погоди</h1>
       <WeatherCard icon={false} list={list} currentWeather={currentWeather} />;
       <Toaster autoClose={5000} closeOnClick />
     </Container>

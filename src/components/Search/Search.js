@@ -4,7 +4,7 @@ const Search = ({ onClick }) => {
   return (
     <Container>
       <Form onSubmit={onClick}>
-        <Input name="search" />
+        <Input placeholder="Шукати місто..." name="search" />
         <Button type="submit">
           <Image />
         </Button>

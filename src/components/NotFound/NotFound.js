@@ -13,7 +13,7 @@ const NotFound = () => {
     <Section>
       <Title>404</Title>
 
-      <Background></Background>
+      <Background />
 
       <Content>
         <Title class="h2">Сторінку не знайдено</Title>

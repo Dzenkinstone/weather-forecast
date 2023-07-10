@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
 export const Header = styled.header`
   margin-bottom: 15px;
@@ -6,7 +6,6 @@ export const Header = styled.header`
   left: 0;
   position: sticky;
   z-index: 1100;
-  min-height: 40px;
   padding: 10px 50px;
   color: #fff;
   background-color: white;

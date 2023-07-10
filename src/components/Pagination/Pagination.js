@@ -1,4 +1,4 @@
-import { Button } from "./Pagination.styled";
+import { Button, List } from "./Pagination.styled";
 
 const Pagination = ({ totalPosts, posts, setPage, page }) => {
   let pages = [];
@@ -8,7 +8,7 @@ const Pagination = ({ totalPosts, posts, setPage, page }) => {
   }
 
   return (
-    <div>
+    <List>
       {pages.map((currentPage, index) => {
         return (
           <Button
@@ -21,7 +21,7 @@ const Pagination = ({ totalPosts, posts, setPage, page }) => {
           </Button>
         );
       })}
-    </div>
+    </List>
   );
 };
 

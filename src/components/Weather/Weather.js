@@ -1,60 +1,58 @@
 import { useDispatch, useSelector } from "react-redux";
 import { searchWeather } from "../../redux/weather/operations";
-import { selectCityList } from "../../redux/weather/selectors";
+import { selectCities, selectCityList } from "../../redux/weather/selectors";
 import { WeatherCard } from "../WeatherCard";
 import { Content, List } from "./Weather.styled";
 import { Search } from "../Search";
-import { useState } from "react";
+import { nanoid } from "nanoid";
+import { Toaster, toast } from "react-hot-toast";
 
 const Weather = () => {
   const dispatch = useDispatch();
   const list = useSelector(selectCityList);
-  const [error, setError] = useState(false);
+  const cities = useSelector(selectCities);
 
-  const onClick = (event) => {
+  const onSubmit = (event) => {
     event.preventDefault();
+
     const city = event.currentTarget.search.value.trim().toLowerCase();
+    const condition = cities.some((item) => item.toLowerCase() === city);
 
-    // const checkCondition = list.map((item) => {
-    //   const condition = item.map(({ name }) => {
-    //     if (name.toLowerCase() === city) {
-    //       return true;
-    //     }
+    if (condition) {
+      return toast("Це місто вже використовується", {
+        duration: 2000,
+        style: {
+          backgroundColor: "red",
+          color: "white",
+          fontSize: "20px",
+        },
+      });
+    }
 
-    //     return false;
-    //   });
-
-    //   const check = condition.some((item) => item === true);
-
-    //   if (check) {
-    //     return setError(true);
-    //   }
-
-    //   return false;
-    // });
-
-    // if (!checkCondition[0]) {
-    //   return alert("Це місто вже використовується");
-    // }
-
-    return dispatch(searchWeather(city));
+    dispatch(searchWeather(city));
   };
 
   return (
     <Content>
-      <Search onClick={onClick} />
+      <Search onClick={onSubmit} />
       <List>
         {list.map((item, idx) => {
+          const id = nanoid();
+
           const currentWeather = [...item].splice(1, 1);
           return (
             <WeatherCard
-              key={idx}
+              key={id}
               list={item}
               currentWeather={currentWeather}
+              city={cities[idx]}
+              idx={idx}
+              icon={true}
             />
           );
         })}
       </List>
+      <Toaster />
     </Content>
   );
 };

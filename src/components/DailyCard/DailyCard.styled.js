@@ -7,12 +7,13 @@ export const List = styled.ul`
 `;
 
 export const Card = styled.li`
-  flex: 1 0 25%; /* explanation below */
-  padding: 20px 0px;
+  margin: 15px 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 5px;
   background-color: grey;
+  border-radius: 20px;
+  padding: 20px;
 `;

@@ -37,20 +37,8 @@ export const searchWeather = createAsyncThunk(
       const responce = await axios.get(
         `http://api.openweathermap.org/data/2.5/forecast?q=${value}&appid=${API_KEY}&units=metric`
       );
-      const data = responce.data.list.map(
-        ({ dt, dt_txt, weather, main, wind }) => {
-          return {
-            dt,
-            dt_txt,
-            weather,
-            main,
-            wind,
-            name: responce.data.city.name,
-          };
-        }
-      );
 
-      return data;
+      return responce.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

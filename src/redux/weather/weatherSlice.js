@@ -2,8 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getWeather, searchWeather } from "./operations";
 
 const initialState = {
-  list: [],
+  mainForecast: [],
   cityForecast: [],
+  cities: [],
   isLoading: false,
   error: null,
 };
@@ -11,6 +12,16 @@ const initialState = {
 export const weatherSlice = createSlice({
   name: "weather",
   initialState,
+  reducers: {
+    deleteCard(state, action) {
+      state.cityForecast = state.cityForecast.filter((item, idx) => {
+        return idx !== action.payload;
+      });
+      state.cities = state.cities.filter((item, idx) => {
+        return idx !== action.payload;
+      });
+    },
+  },
   extraReducers: {
     [getWeather.pending](state) {
       state.isLoading = true;
@@ -18,7 +29,7 @@ export const weatherSlice = createSlice({
     [getWeather.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-      state.list = action.payload;
+      state.mainForecast = action.payload;
     },
     [getWeather.rejected](state, action) {
       state.isLoading = false;
@@ -30,7 +41,8 @@ export const weatherSlice = createSlice({
     [searchWeather.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-      state.cityForecast.push(action.payload);
+      state.cityForecast.push(action.payload.list);
+      state.cities.push(action.payload.city.name);
     },
     [searchWeather.rejected](state, action) {
       state.isLoading = false;
@@ -39,4 +51,5 @@ export const weatherSlice = createSlice({
   },
 });
 
+export const deleteCard = weatherSlice.actions.deleteCard;
 export const weatherReducer = weatherSlice.reducer;

@@ -7,7 +7,6 @@ export const List = styled.ul`
 `;
 
 export const Card = styled.li`
-  margin: 15px 0px;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getWeather } from "../../redux/weather/operations";
 import { Container } from "./Home.styled";
@@ -12,7 +12,7 @@ const Home = () => {
   const list = useSelector(selectList);
   const currentWeather = [...list].splice(1, 1);
 
-  useEffect(() => {
+  useMemo(() => {
     const successCallback = (position) => {
       const currentPosition = {
         lat: position.coords.latitude,
@@ -31,6 +31,7 @@ const Home = () => {
         }
       );
     };
+
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
   }, [dispatch]);
 

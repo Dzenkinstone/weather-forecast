@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 
 export const Card = styled.div`
   position: relative;
-  width: 580px;
   padding: 40px 35px;
   display: flex;
   flex-direction: column;

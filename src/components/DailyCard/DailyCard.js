@@ -1,21 +1,28 @@
 import { Card, List } from "./DailyCard.styled";
 
 import getImage from "../../utils/getImage";
-import { Pagination } from "../Pagination";
-import { useState } from "react";
+import getUserTime from "../../utils/getUserTime";
 
 const DailyCard = ({ list }) => {
-  const [page, setPage] = useState(1);
   const weatherForecast = [...list].splice(1, list.length - 1);
-  const postsPerPage = 3;
-  const lastIndex = page * postsPerPage;
-  const firstIndex = lastIndex - postsPerPage;
-  const currentPost = weatherForecast.slice(firstIndex, lastIndex);
+  const getDays = [];
+
+  weatherForecast.forEach(({ dt, dt_txt }, index, array) => {
+    if (
+      new Date(array[index]?.dt * 1000).getDay() ===
+      new Date(array[index + 1]?.dt * 1000).getDay()
+    ) {
+    } else {
+      getDays.push(array[index]);
+    }
+
+    return;
+  });
 
   return (
     <>
       <List>
-        {currentPost.map(({ dt, dt_txt, main, weather }, index) => {
+        {getDays.map(({ dt, dt_txt, main, weather }) => {
           const weatherIcon = getImage(weather);
           return (
             <Card key={dt}>
@@ -26,17 +33,11 @@ const DailyCard = ({ list }) => {
                 height={30}
               />
               <p style={{ textAlign: "center" }}>{main.temp.toFixed()}°C</p>
-              <p>{dt_txt}</p>
+              <p>{getUserTime(dt)}</p>
             </Card>
           );
         })}
       </List>
-      <Pagination
-        totalPosts={weatherForecast.length}
-        posts={postsPerPage}
-        setPage={setPage}
-        page={page}
-      />
     </>
   );
 };

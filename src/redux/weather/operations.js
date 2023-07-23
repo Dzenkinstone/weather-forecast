@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
-const API_KEY = "20a1790bb70256b9cc082b6d5160a3ae";
+const API_KEY = "ca0f0e080c31e1e31448da75c1772395";
 
 export const getWeather = createAsyncThunk(
   "weather/getWeather",
@@ -10,7 +10,7 @@ export const getWeather = createAsyncThunk(
     try {
       const { lat, lon } = value;
       const responce = await axios.get(
-        `https://api.openweathermap.org/data/2.5/forecast?appid=${API_KEY}&lat=${lat}&lon=${lon}&units=metric`
+        `https://api.openweathermap.org/data/2.5/forecast?appid=${API_KEY}&lat=${lat}&lon=${lon}&units=metric&lang=ua`
       );
       const data = responce.data.list.map(
         ({ dt, dt_txt, weather, main, wind }) => {
@@ -36,7 +36,7 @@ export const searchWeather = createAsyncThunk(
   async (value, thunkAPI) => {
     try {
       const responce = await axios.get(
-        `http://api.openweathermap.org/data/2.5/forecast?q=${value}&appid=${API_KEY}&units=metric`
+        `http://api.openweathermap.org/data/2.5/forecast?q=${value}&appid=${API_KEY}&units=metric&lang=ua`
       );
 
       return responce.data;

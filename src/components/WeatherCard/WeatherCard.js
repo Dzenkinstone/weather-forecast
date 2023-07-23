@@ -14,7 +14,7 @@ const WeatherCard = ({ currentWeather, list, city, idx, icon }) => {
   };
 
   return (
-    <li>
+    <>
       {currentWeather.map(({ dt, name, weather, main, wind }, index) => {
         const weatherIcon = getImage(weather);
         return (
@@ -32,7 +32,7 @@ const WeatherCard = ({ currentWeather, list, city, idx, icon }) => {
           </Card>
         );
       })}
-    </li>
+    </>
   );
 };
 

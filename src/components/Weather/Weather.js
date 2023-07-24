@@ -56,20 +56,29 @@ const Weather = () => {
   return (
     <Content>
       <Search onClick={onSubmit} />
-      {list.map((item, idx) => {
-        const id = nanoid();
-        const currentWeather = [...item].splice(1, 1);
-        return (
-          <WeatherCard
-            key={id}
-            list={item}
-            currentWeather={currentWeather}
-            city={cities[idx]}
-            idx={idx}
-            icon={true}
-          />
-        );
-      })}
+      <List>
+        {list.map((item, idx) => {
+          const id = nanoid();
+          const currentWeather = [...item].splice(1, 1);
+
+          return currentWeather.map(({ dt, name, weather, main, wind }) => {
+            return (
+              <WeatherCard
+                dt={dt}
+                name={name}
+                weather={weather}
+                main={main}
+                wind={wind}
+                key={id}
+                list={item}
+                city={cities[idx]}
+                idx={idx}
+                icon={true}
+              />
+            );
+          });
+        })}
+      </List>
       <Toaster />
     </Content>
   );

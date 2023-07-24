@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getWeather } from "../../redux/weather/operations";
 import { Container } from "./Home.styled";
@@ -38,7 +38,20 @@ const Home = () => {
   return (
     <Container>
       <h1>Ваш прогноз погоди</h1>
-      <WeatherCard icon={false} list={list} currentWeather={currentWeather} />;
+      {currentWeather.map(({ dt, name, weather, main, wind }) => {
+        return (
+          <WeatherCard
+            key={dt}
+            dt={dt}
+            name={name}
+            weather={weather}
+            list={list}
+            main={main}
+            wind={wind}
+            icon={false}
+          />
+        );
+      })}
       <Toaster autoClose={5000} closeOnClick />
     </Container>
   );

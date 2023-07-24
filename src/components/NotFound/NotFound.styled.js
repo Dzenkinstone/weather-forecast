@@ -38,6 +38,7 @@ export const Content = styled.div`
 `;
 
 export const GoToHome = styled.button`
+  border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -46,6 +47,11 @@ export const GoToHome = styled.button`
   color: white;
   margin: 0 auto;
   background: #39ac31;
+
+  &:hover {
+    transition: background 0.3s;
+    background: green;
+  }
 `;
 
 export const Link = styled(NavLink)`

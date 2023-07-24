@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const Card = styled.div`
+export const Card = styled.li`
   position: relative;
   padding: 40px 35px;
   display: flex;
@@ -24,14 +24,23 @@ export const Link = styled.a`
   justify-content: center;
   width: 40px;
   height: 40px;
-  background-color: red;
+  background: transparent;
+
   cursor: pointer;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 1em;
+  right: 1em;
 
   &:hover {
-    transition: background-color 0.6s;
-    background-color: rgb(220, 20, 60);
+    border-radius: 20px;
+    transition: background-color 0.3s;
+    background-color: red;
   }
+`;
+
+export const List = styled.ul`
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 `;

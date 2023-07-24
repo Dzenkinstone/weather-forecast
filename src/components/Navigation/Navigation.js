@@ -23,7 +23,7 @@ const NavigationBar = () => {
           <HomeLink to="/" end>
             Головна
           </HomeLink>
-          <Link to="/weather-forecast" end>
+          <Link to="/search-forecast" end>
             Погода
           </Link>
         </Item>

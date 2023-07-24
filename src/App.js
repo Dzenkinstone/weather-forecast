@@ -14,7 +14,7 @@ export const App = () => {
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<HomePage />} />
-        <Route path="/weather-forecast" element={<WeatherPage />} />
+        <Route path="/search-forecast" element={<WeatherPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

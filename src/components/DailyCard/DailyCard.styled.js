@@ -10,3 +10,7 @@ export const Card = styled.li`
   border-radius: 20px;
   padding: 20px;
 `;
+
+export const Link = styled.a`
+  cursor: pointer;
+`;

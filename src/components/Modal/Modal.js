@@ -1,41 +1,65 @@
-import { Overlay, Background, Link, Text, Item, List } from "./Modal.styled";
+import { MainModal } from "./Modal.styled";
+import { useCallback, useEffect, useRef } from "react";
+import { ModalContent } from "../ModalContent";
 
-import getImage from "../../utils/getImage";
-import { GrClose } from "react-icons/gr";
-import { getForecastByDay, getMinutes } from "../../utils/getDate";
+const Modal = ({ list, dt, setIsModalOpen, isModalOpen, city }) => {
+  const body = document.querySelector("body");
 
-const Modal = ({ list, dt, setIsModalOpen }) => {
-  const findForecast = getForecastByDay(dt, list);
+  const modalRef = useRef(null);
+
+  const setRef = useCallback(
+    (node) => {
+      const onCLick = (event) => {
+        if (event.target !== event.currentTarget) {
+          return;
+        }
+
+        setIsModalOpen(false);
+      };
+
+      if (modalRef.current) {
+        modalRef.current.removeEventListener("click", onCLick);
+      }
+
+      if (node) {
+        node.addEventListener("click", onCLick);
+      }
+
+      // Save a reference to the node
+      modalRef.current = node;
+    },
+    [setIsModalOpen]
+  );
+
+  useEffect(() => {
+    body.style.overflowY = isModalOpen ? "hidden" : "visible";
+
+    const handleChange = (event) => {
+      if (event.code !== "Escape") {
+        return;
+      }
+
+      setIsModalOpen(false);
+    };
+
+    window.addEventListener("keydown", handleChange);
+
+    return () => {
+      window.removeEventListener("keydown", handleChange);
+    };
+  }, [body, isModalOpen, setIsModalOpen]);
 
   return (
-    <Overlay>
-      <Background>
-        <Link onClick={() => setIsModalOpen(false)}>
-          <GrClose />
-        </Link>
-        <List>
-          {findForecast.map(({ dt, main, weather }, index, array) => {
-            const weatherIcon = getImage(weather);
-
-            return (
-              <Item key={dt}>
-                <img
-                  alt="weather-icon"
-                  src={weatherIcon}
-                  width={30}
-                  height={30}
-                />
-                <Text style={{ textAlign: "center" }}>
-                  {`${main.temp.toFixed()}°C`}
-                </Text>
-                <Text>{getMinutes(dt)}</Text>
-                <Text>{weather[0].description}</Text>
-              </Item>
-            );
-          })}
-        </List>
-      </Background>
-    </Overlay>
+    isModalOpen && (
+      <MainModal ref={setRef} isModalOpen={isModalOpen}>
+        <ModalContent
+          city={city}
+          dt={dt}
+          list={list}
+          setIsModalOpen={setIsModalOpen}
+        />
+      </MainModal>
+    )
   );
 };
 

@@ -1,3 +1,13 @@
+const days = [
+  "Понеділок",
+  "Вівторок",
+  "Середа",
+  "Четвер",
+  "П'ятниця",
+  "Субота",
+  "Неділя",
+];
+
 function addLeadingZero(d) {
   return d < 10 ? "0" + d : d;
 }
@@ -26,6 +36,14 @@ export const getForecastByDay = (dt, list) => {
   const findForecast = list.filter(({ dt_txt }) => dt_txt.includes(date));
 
   return findForecast;
+};
+
+export const getUserTime = (dt) => {
+  const time = new Date(dt * 1000);
+
+  const day = days[time.getDay()];
+
+  return day;
 };
 
 export const getMinutes = (dt) => {

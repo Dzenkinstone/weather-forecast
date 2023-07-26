@@ -32,6 +32,7 @@ const WeatherCard = memo(
                 <DailyCard
                   key={dt}
                   dt={dt}
+                  city={city}
                   main={main}
                   weather={weather}
                   list={list}

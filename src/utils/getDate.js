@@ -29,11 +29,13 @@ export default getDays;
 export const getForecastByDay = (dt, list) => {
   const year = new Date(dt * 1000).getFullYear();
   const month = addLeadingZero(new Date(dt * 1000).getMonth() + 1);
-  const day = new Date(dt * 1000).getDate();
+  const day = addLeadingZero(new Date(dt * 1000).getDate());
 
   const date = `${year}-${month}-${day}`;
 
-  const findForecast = list.filter(({ dt_txt }) => dt_txt.includes(date));
+  const findForecast = list.filter(({ dt_txt }) => {
+    return dt_txt.includes(date);
+  });
 
   return findForecast;
 };

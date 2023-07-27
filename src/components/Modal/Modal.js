@@ -1,4 +1,4 @@
-import { MainModal } from "./Modal.styled";
+import { Backdrop, MainModal } from "./Modal.styled";
 import { useCallback, useEffect, useRef } from "react";
 import { ModalContent } from "../ModalContent";
 
@@ -50,16 +50,14 @@ const Modal = ({ list, dt, setIsModalOpen, isModalOpen, city }) => {
   }, [body, isModalOpen, setIsModalOpen]);
 
   return (
-    isModalOpen && (
-      <MainModal ref={setRef} isModalOpen={isModalOpen}>
-        <ModalContent
-          city={city}
-          dt={dt}
-          list={list}
-          setIsModalOpen={setIsModalOpen}
-        />
-      </MainModal>
-    )
+    <Backdrop ref={setRef} isModalOpen={isModalOpen}>
+      <ModalContent
+        city={city}
+        dt={dt}
+        list={list}
+        setIsModalOpen={setIsModalOpen}
+      />
+    </Backdrop>
   );
 };
 
